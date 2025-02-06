@@ -2,17 +2,19 @@ from collections import defaultdict
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    def check_offers(total):
-        total = check_offer_a(total)
+    def check_offers():
+        total = 0
+        total += check_offer_a()
         check_offer_e()
-        total = check_offer_b(total)
+        total += check_offer_b()
         return total
 
-    def check_offer_a(total):
-        while items_in_skus["A"] >=5:
+    def check_offer_a():
+        total=0
+        while items_in_skus["A"] >= 5:
             total += 200
             items_in_skus["A"] -= 5
-        while items_in_skus["A"] >=3:
+        while items_in_skus["A"] >= 3:
             total+=130
             items_in_skus["A"] -= 3
         return total
@@ -23,11 +25,13 @@ def checkout(skus):
             items_in_skus["B"] -=1
             tmp-=2
 
-    def check_offer_b(total):
+    def check_offer_b():
+        total=0
         while items_in_skus["B"] >=2:
             total += 45
             items_in_skus["B"] -= 2
-        
+        return total
+    
     prices = {
         "A": 50,
         "B": 30,
@@ -53,4 +57,5 @@ def checkout(skus):
     return total
 
             
+
 
