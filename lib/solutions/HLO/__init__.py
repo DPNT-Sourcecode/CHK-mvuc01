@@ -1,2 +1,2 @@
 def hello(hello):
-    return(f"hello {hello}" )
+    return("hello, world")
