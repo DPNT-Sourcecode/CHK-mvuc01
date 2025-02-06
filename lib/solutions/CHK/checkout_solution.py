@@ -45,7 +45,7 @@ def checkout(skus):
         total += prices[item]*skus_minus_special[item]
     return total
 
-def check_offers(items_in_skus):
+def check_offers(items_in_skus, prices):
     bulk_buy = {
         "A": [[5,200], [3,130]],
         "B": [[2,45]],
@@ -65,6 +65,7 @@ def check_offers(items_in_skus):
         "N": [3, "M"],
         "R": [3, "Q"]
     }
+    any_three_items = ["S","T", "X","Y","Z",]
 
 
     total = 0
@@ -78,13 +79,14 @@ def check_offers(items_in_skus):
             for schema in bulk_buy[item]:
                 number, cost = schema
                 total += x_for_y(item, number, cost, items_in_skus)
-    total+=check_any_three(items_in_skus)
+    total+=check_any_three(items_in_skus, any_three_items, prices)
 
     return total, items_in_skus
 
 
-def check_any_three(skus):
-    any_three = [["S", 21],["T", 20],["X", 17],["Y", 20],["Z", 20]]
+def check_any_three(skus, any_three_items, prices):
+    any_three = [[sku, prices[sku]] for sku in any_three_items]
+    # [["S", 21],["T", 20],["X", 17],["Y", 20],["Z", 20]]
     total = 0
     sum_of_offers = 0
     for sku, _ in any_three:
@@ -94,7 +96,7 @@ def check_any_three(skus):
 
     # sum_of_offerings = sum(skus[item[0]] for item in any_three)
     target = sum_of_offers % 3
-    any_three.sort(key=lambda x: x[1], reverse=True)
+    any_three.sort(key=lambda x: x[1], reverse=True) # sort by price
     to_process = sum_of_offers - target # should be a multiple of 3
     total += to_process * 15 # 45/3 is 15 each
     
@@ -131,3 +133,4 @@ def buy_x_get_y(x ,offer, skus):
     while tmp >= number and skus[y] > 0:
         skus[y] -=1
         tmp-=number
+
