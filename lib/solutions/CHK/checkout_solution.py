@@ -71,6 +71,7 @@ def check_offers(items_in_skus):
             buy_x_get_y(item, bogaf[item], items_in_skus)
         if item in bogof:
             buy_x_get_one(item, bogof[item], items_in_skus)
+    for item in items_in_skus:
         if item in bulk_buy:
             for schema in bulk_buy[item]:
                 number, cost = schema
@@ -120,5 +121,6 @@ def buy_x_get_y(x ,offer, skus):
     while tmp >= number and skus[y] > 0:
         skus[y] -=1
         tmp-=number
+
 
 
