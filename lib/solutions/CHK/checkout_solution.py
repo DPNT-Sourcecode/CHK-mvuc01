@@ -13,7 +13,7 @@ def checkout(skus):
         "H": 10,
         "I": 35,
         "J": 60,
-        "K": 80,
+        "K": 70,
         "L": 90,
         "M": 15,
         "N": 40,
@@ -21,14 +21,14 @@ def checkout(skus):
         "P": 50,
         "Q": 30,
         "R": 50,
-        "S": 30,
+        "S": 20,
         "T": 20,
         "U": 40,
         "V": 50,
         "W": 20,
-        "X": 90,
-        "Y": 10,
-        "Z": 50
+        "X": 17,
+        "Y": 20,
+        "Z": 21
     }
 
  
@@ -50,7 +50,7 @@ def check_offers(items_in_skus):
         "A": [[5,200], [3,130]],
         "B": [[2,45]],
         "H": [[10,80], [5,45]],
-        "K": [[2,150]],
+        "K": [[2,120]],
         "P": [[5,200]],
         "Q": [[3,80]],
         "V": [[3,130],[2,90]],
@@ -65,6 +65,8 @@ def check_offers(items_in_skus):
         "N": [3, "M"],
         "R": [3, "Q"]
     }
+
+
     total = 0
     for item in items_in_skus:
         if item in bogaf:
@@ -76,12 +78,37 @@ def check_offers(items_in_skus):
             for schema in bulk_buy[item]:
                 number, cost = schema
                 total += x_for_y(item, number, cost, items_in_skus)
+    total+=check_any_three(items_in_skus)
 
     return total, items_in_skus
 
 
+def check_any_three(skus):
+    any_three = [["S", 21],["T", 20],["X", 17],["Y", 20],["Z", 20]]
+    total = 0
+    sum_of_offers = 0
+    for sku, _ in any_three:
+        if sku not in skus:
+            skus[sku] = 0
+        sum_of_offers += skus[sku]
 
+    # sum_of_offerings = sum(skus[item[0]] for item in any_three)
+    target = sum_of_offers % 3
+    any_three.sort(key=lambda x: x[1], reverse=True)
+    to_process = sum_of_offers - target # should be a multiple of 3
+    total += to_process * 15 # 45/3 is 15 each
+    
+    for sku, _ in any_three:
+        while to_process > 0:
+            if to_process >= skus[sku]:
+                to_process -= skus[sku]
+                skus[sku] = 0
+            else:
+                skus[sku] -= to_process
+                to_process = 0
+                break
 
+    return total
 
 
 def x_for_y(item, number, price, skus):
