@@ -83,23 +83,6 @@ def check_offers(items_in_skus):
 
 
 
-        # while items_in_skus["A"] >= 5:
-        #     total += 200
-        #     items_in_skus["A"] -= 5
-        # while items_in_skus["A"] >= 3:
-        #     total+=130
-        #     items_in_skus["A"] -= 3
-        # tmp = items_in_skus["E"]
-        # while tmp >= 2 and items_in_skus["B"]>0:
-        #     items_in_skus["B"] -=1
-        #     tmp-=2
-        # while items_in_skus["B"] >=2:
-        #     total += 45
-        #     items_in_skus["B"] -= 2
-        # if items_in_skus["F"] > 2:
-        #     # get 1/3 of F's removed(rounded down)
-        #     discount = items_in_skus["F"] // 3
-        #     items_in_skus["F"] -= discount
 
 def x_for_y(item, number, price, skus):
     total = 0
