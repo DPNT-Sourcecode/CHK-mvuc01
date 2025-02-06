@@ -29,6 +29,11 @@ def checkout(skus):
 
 def check_offers(items_in_skus):
         total = 0
+
+
+
+
+
         while items_in_skus["A"] >= 5:
             total += 200
             items_in_skus["A"] -= 5
@@ -47,4 +52,19 @@ def check_offers(items_in_skus):
             discount = items_in_skus["F"] // 3
             items_in_skus["F"] -= discount
         return total, items_in_skus
-            
+
+def x_for_y(item, number, price, total, skus):
+    if skus[item] >= number:
+        total +=price
+        skus[item] -= number
+
+def buy_x_get_one(item, number, skus):
+    if skus[item] > number:
+        discount = skus[item] // (number+1)
+        skus[item] -= discount
+
+def buy_x_get_y(x,y,number,skus):
+    tmp = skus[x]
+    while tmp >= number and skus[y]>0:
+        skus[y] -=1
+        tmp-=number
