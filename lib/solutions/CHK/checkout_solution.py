@@ -9,12 +9,29 @@ def checkout(skus):
         "D": 15,
         "E": 40,
         "F": 10,
+        "G": 20,
+        "H": 10,
+        "I": 35,
+        "J": 60,
+        "K": 80,
+        "L": 90,
+        "M": 15,
+        "N": 40,
+        "O": 10,
+        "P": 50,
+        "Q": 30,
+        "R": 50,
+        "S": 30,
+        "T": 20,
+        "U": 40,
+        "V": 50,
+        "W": 20,
+        "X": 90,
+        "Y": 10,
+        "Z": 50
     }
 
-    # special_prices = {
-    #     "A": [3, 130],
-    #     "B": [2, 45]
-    # }    
+ 
     total = 0
     items_in_skus = defaultdict(int)
     for item in skus:
@@ -101,3 +118,4 @@ def buy_x_get_y(x,offer,skus):
     while tmp >= number and skus[y]>0:
         skus[y] -=1
         tmp-=number
+
