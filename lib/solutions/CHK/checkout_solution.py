@@ -28,7 +28,7 @@ def checkout(skus):
         "W": 20,
         "X": 17,
         "Y": 20,
-        "Z": 21
+        "Z": 21,
     }
 
  
@@ -40,7 +40,7 @@ def checkout(skus):
 
         items_in_skus[item] += 1
     
-    total, skus_minus_special = check_offers(items_in_skus)
+    total, skus_minus_special = check_offers(items_in_skus, prices)
     for item in skus_minus_special.keys():
         total += prices[item]*skus_minus_special[item]
     return total
@@ -85,8 +85,8 @@ def check_offers(items_in_skus, prices):
 
 
 def check_any_three(skus, any_three_items, prices):
-    any_three = [[sku, prices[sku]] for sku in any_three_items]
-    # [["S", 21],["T", 20],["X", 17],["Y", 20],["Z", 20]]
+     #[[sku, prices[sku]] for sku in any_three_items]
+    any_three = [["S", 21],["T", 20],["Y", 20],["Z", 20],["X", 17]]
     total = 0
     sum_of_offers = 0
     for sku, _ in any_three:
@@ -96,7 +96,7 @@ def check_any_three(skus, any_three_items, prices):
 
     # sum_of_offerings = sum(skus[item[0]] for item in any_three)
     target = sum_of_offers % 3
-    any_three.sort(key=lambda x: x[1], reverse=True) # sort by price
+    # any_three.sort(key=lambda x: x[1], reverse=True) # sort by price
     to_process = sum_of_offers - target # should be a multiple of 3
     total += to_process * 15 # 45/3 is 15 each
     
@@ -133,4 +133,5 @@ def buy_x_get_y(x ,offer, skus):
     while tmp >= number and skus[y] > 0:
         skus[y] -=1
         tmp-=number
+
 
