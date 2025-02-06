@@ -7,7 +7,8 @@ def checkout(skus):
         "B": 30,
         "C": 20,
         "D": 15,
-        "E": 40
+        "E": 40,
+        "F": 10,
     }
     # special_prices = {
     #     "A": [3, 130],
@@ -41,5 +42,9 @@ def check_offers(items_in_skus):
         while items_in_skus["B"] >=2:
             total += 45
             items_in_skus["B"] -= 2
+        if items_in_skus["F"] > 2:
+            # get 1/3 of F's removed(rounded down)
+            discount = items_in_skus["F"] // 3
+            items_in_skus["F"] -= discount
         return total, items_in_skus
             
