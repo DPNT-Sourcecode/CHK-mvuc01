@@ -100,16 +100,16 @@ def check_any_three(skus, any_three_items, prices):
     to_process = sum_of_offers - target # should be a multiple of 3
     total += to_process * 15 # 45/3 is 15 each
     
+    
     for sku, _ in any_three:
-        while to_process > 0:
-            if to_process >= skus[sku]:
-                to_process -= skus[sku]
-                skus[sku] = 0
-                continue
-            else:
-                skus[sku] -= to_process
-                to_process = 0
-                break
+        if to_process >= skus[sku]:
+            to_process -= skus[sku]
+            skus[sku] = 0
+            
+        else:
+            skus[sku] -= to_process
+            to_process = 0
+            break
 
     return total
 
@@ -134,6 +134,7 @@ def buy_x_get_y(x ,offer, skus):
     while tmp >= number and skus[y] > 0:
         skus[y] -=1
         tmp-=number
+
 
 
 
