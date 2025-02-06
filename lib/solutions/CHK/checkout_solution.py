@@ -36,7 +36,7 @@ def check_offers(items_in_skus):
         "K": [[2,150]],
         "P": [[5,200]],
         "Q": [[3,80]],
-        "V": [[2,90], [3,130]],
+        "V": [[3,130],[2,90]],
     }
 
     bogof = {
@@ -55,7 +55,8 @@ def check_offers(items_in_skus):
         if item in bogof:
             buy_x_get_one(item, bogof[item], items_in_skus)
         if item in bulk_buy:
-            for number, cost in item[bulk_buy]:
+            for schema in bulk_buy[item]:
+                number, cost = schema
                 total += x_for_y(item, number, cost, items_in_skus)
 
     return total, items_in_skus
