@@ -112,12 +112,13 @@ def buy_x_get_one(x, number, skus):
         discount = skus[x] // (number+1)
         skus[x] -= discount
 
-def buy_x_get_y(x,offer,skus):
+def buy_x_get_y(x ,offer, skus):
     number, y = offer
     tmp = skus[x]
-    if y not in skus:
+    if y not in skus.keys():
         return
     while tmp >= number and skus[y] > 0:
         skus[y] -=1
         tmp-=number
+
 
