@@ -115,7 +115,9 @@ def buy_x_get_one(x, number, skus):
 def buy_x_get_y(x,offer,skus):
     number, y = offer
     tmp = skus[x]
-    while tmp >= number and skus[y] and skus[y] > 0:
+    if y not in skus:
+        return
+    while tmp >= number and skus[y] > 0:
         skus[y] -=1
         tmp-=number
 
