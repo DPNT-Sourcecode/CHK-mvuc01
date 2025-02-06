@@ -105,6 +105,7 @@ def check_any_three(skus, any_three_items, prices):
             if to_process >= skus[sku]:
                 to_process -= skus[sku]
                 skus[sku] = 0
+                continue
             else:
                 skus[sku] -= to_process
                 to_process = 0
@@ -133,5 +134,6 @@ def buy_x_get_y(x ,offer, skus):
     while tmp >= number and skus[y] > 0:
         skus[y] -=1
         tmp-=number
+
 
 
