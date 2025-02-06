@@ -86,7 +86,7 @@ def check_offers(items_in_skus, prices):
 
 def check_any_three(skus, any_three_items, prices):
      #[[sku, prices[sku]] for sku in any_three_items]
-    any_three = [["S", 21],["T", 20],["Y", 20],["Z", 20],["X", 17]]
+    any_three = [["Z", 21],["T", 20],["Y", 20],["S", 20],["X", 17]]
     total = 0
     sum_of_offers = 0
     for sku, _ in any_three:
@@ -134,6 +134,7 @@ def buy_x_get_y(x ,offer, skus):
     while tmp >= number and skus[y] > 0:
         skus[y] -=1
         tmp-=number
+
 
 
 
