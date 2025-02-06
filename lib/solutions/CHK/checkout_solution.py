@@ -121,6 +121,3 @@ def buy_x_get_y(x ,offer, skus):
     while tmp >= number and skus[y] > 0:
         skus[y] -=1
         tmp-=number
-
-
-
